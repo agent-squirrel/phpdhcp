@@ -72,7 +72,7 @@ class dhcpServer {
 	            $numBytesSent = socket_sendto($this->socket, $responseData, strlen($responseData), 0, "255.255.255.255", 68);
 		        $numBytesSent === FALSE && $this->verbosity && printf('socket send error: %s\n',socket_strerror(socket_last_error($this->socket)));
 	        }
-	        $numBytesSent && $this->verbosity && print("Response packet sent.\n");
+		$numBytesSent && $this->verbosity && print("Response packet sent.\n");
 		}
 		else
 		{

@@ -17,13 +17,19 @@
 
 class dhcpStorage {
     function getAttributesForClient($mac) {
-        return array(
-            'yiaddr' => array(10, 2, 3, 4),
-            'subnet_mask' => array(255, 255, 255, 0),
-            'router' => array(10, 2, 3, 1),
-            'dns_server' => array(10, 2, 3, 1),
-            'lease_time' => 86400,
-            'domain_name' => 'csh.rit.edu'
-        );
+	$config = 'config.ini';
+	if (file_exists($config)) {
+		$confarray = parse_ini_file($config);
+	        return array(
+	            'yiaddr' => array_map('intval', explode('.', $confarray['ipaddress'])),
+	            'subnet_mask' => array_map('intval', explode('.', $confarray['subnetmask'])),
+	            'router' => array_map('intval', explode('.', $confarray['gateway'])),
+	            'dns_server' => array_map('intval', explode('.', $confarray['dnsserver'])),
+	            'lease_time' => intval($confarray['leasetime']),
+	            'domain_name' => $confarray['domainname']
+	    );
+	} else {
+		return 0;
+	};
     }
 }

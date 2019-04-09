@@ -1,0 +1,10 @@
+; Config file for php dhcp server
+; Fill in the variables
+
+
+ipaddress = "xx.xxx.xxx.xx"
+subnetmask = "255.255.255.255"
+gateway = "xx.xxx.xxx.xx"
+dnsserver = "xx.xxx.xxx.xx"
+leasetime = "86400"
+domainame= "domain.net.au"
